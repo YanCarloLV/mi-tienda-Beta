@@ -12,6 +12,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
+/* Evita zoom al enfocar inputs en iOS */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
 /* =============================================
    VARIABLES
 ============================================= */
@@ -288,7 +293,7 @@ body.is-mobile .wms-kpis{grid-template-columns:repeat(2,1fr);}
 .act-talla-label{font-size:.65rem;color:var(--muted);font-weight:800;text-transform:uppercase;}
 .act-talla-val{font-size:1.4rem;font-weight:800;color:var(--white);}
 /* WMS Toast */
-.wms-toast{position:absolute;top:14px;right:14px;background:rgba(39,174,96,.9);color:#fff;padding:7px 15px;border-radius:8px;font-size:.73rem;font-weight:700;opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .3s;z-index:100;}
+.wms-toast{position:absolute;top:80px;right:14px;background:rgba(39,174,96,.9);color:#fff;padding:7px 15px;border-radius:8px;font-size:.73rem;font-weight:700;opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .3s;z-index:999999;}
 .wms-toast.show{opacity:1;transform:translateY(0);}
 /* =============================================
    LABEL DEMO STYLES
@@ -351,10 +356,10 @@ body.is-mobile .catalog-demo-wrap{grid-template-columns:1fr;}
 #cat-doc{width:800px;min-height:600px;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.5);box-sizing:border-box;display:flex;flex-direction:column;}
 .cat-doc-header{background:#181818;color:#fff;padding:16px 28px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #FF6600;}
 .cat-brand h1{font-family:'Playfair Display',serif;font-size:28px;margin:0;letter-spacing:2px;color:#FF6600;line-height:1;}
-.cat-brand p{font-size:9px;letter-spacing:4px;opacity:.7;margin:4px 0 0;}
+.cat-brand p{font-size:12px;letter-spacing:3px;opacity:.7;margin:4px 0 0;}
 .cat-meta{text-align:right;}
 .cat-meta h2{font-size:18px;margin:0;font-weight:700;border-bottom:2px solid #FF6600;padding-bottom:4px;color:#fff;}
-.cat-meta p{font-size:11px;margin:4px 0 0;text-transform:uppercase;letter-spacing:1px;color:#ccc;}
+.cat-meta p{font-size:13px;margin:4px 0 0;text-transform:uppercase;letter-spacing:1px;color:#ccc;}
 .cat-content{padding:18px 24px;flex:1;display:flex;flex-direction:column;}
 .cat-topbar{display:flex;justify-content:space-between;margin-bottom:12px;border-bottom:1px solid #ddd;padding-bottom:8px;}
 .cat-mod-val{font-size:18px;font-weight:700;color:#111;}
@@ -365,18 +370,18 @@ body.is-mobile .catalog-demo-wrap{grid-template-columns:1fr;}
 .cat-variant-card{border:1px solid #eee;display:flex;gap:8px;padding:8px;background:#fafafa;border-radius:6px;min-height:160px;}
 .cat-variant-img{width:44%;background:#fff;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:2.5rem;}
 .cat-variant-info{width:56%;display:flex;flex-direction:column;}
-.cat-variant-name{background:#333;color:#fff;font-size:10px;padding:5px;text-align:center;font-weight:700;text-transform:uppercase;margin-bottom:6px;border-radius:3px;letter-spacing:1px;}
+.cat-variant-name{background:#333;color:#fff;font-size:13px;padding:7px;text-align:center;font-weight:700;text-transform:uppercase;margin-bottom:8px;border-radius:3px;letter-spacing:1px;}
 .cat-size-table{width:100%;border-collapse:collapse;font-size:10px;}
-.cat-size-table th{background:#eee;padding:3px;font-size:9px;color:#666;}
-.cat-size-table td{border:1px solid #ddd;padding:3px;text-align:center;background:#fff;font-weight:600;color:#111;}
+.cat-size-table th{background:#eee;padding:5px 4px;font-size:11px;color:#555;font-weight:700;}
+.cat-size-table td{border:1px solid #ddd;padding:5px 4px;text-align:center;background:#fff;font-weight:600;color:#111;font-size:12px;}
 .cat-row-total{font-weight:700;color:#5B1E31;background:#fff9f9!important;}
 .cat-footer-finance{background:#fff9e1;border:2px solid #d4af37;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;border-radius:5px;margin-top:8px;}
 .cat-f-item{text-align:center;}
-.cat-f-label{font-size:9px;font-weight:700;color:#8a6d3b;margin-bottom:3px;text-transform:uppercase;}
-.cat-f-val{font-size:15px;font-weight:700;color:#111;}
+.cat-f-label{font-size:11px;font-weight:700;color:#8a6d3b;margin-bottom:4px;text-transform:uppercase;}
+.cat-f-val{font-size:18px;font-weight:700;color:#111;}
 .cat-gran-total{background:#5B1E31;color:#fff;padding:10px 18px;border-radius:5px;}
 .cat-gran-total .cat-f-label{color:#fcebd7;}
-.cat-gran-total .cat-f-val{color:#fff;font-size:20px;}
+.cat-gran-total .cat-f-val{color:#fff;font-size:23px;}
 .cat-f-div{border-left:2px solid #faebcc;height:35px;margin:0 8px;}
 /* =============================================
    VIDRIOS DEMO STYLES
@@ -486,6 +491,321 @@ body.is-mobile .cat-doc{transform:scale(.7);transform-origin:top center;}
 body.is-mobile .chip:active{background:rgba(245,136,31,.1);border-color:var(--orange);color:var(--orange);}
 body.is-mobile .fil-card:active{background:rgba(245,136,31,.06);border-color:rgba(245,136,31,.3);}
 body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgba(245,136,31,.4);color:var(--orange);}
+/* =============================================
+   iOS NATIVE FEEL — MOMENTUM + GPU + HAPTICS
+============================================= */
+
+/* Elimina el delay de 300ms en todos los taps */
+* { touch-action: manipulation; }
+
+/* Momentum scrolling nativo en todos los contenedores */
+.wms-main, .ai-terminal-body, .label-left, .label-right,
+.wms-panel-body, .sup-catalogo-grid, .sup-carrito-list,
+.catalog-controls, .catalog-preview-area, .vidrios-demo-wrap,
+#cv-preview-wrap, .odoo-demo, .label-cat-grid,
+#sup-tab-inventarios > div, #sup-tab-pedidos > div,
+.wms-table-wrap, .odoo-terminal, .about-stats {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* GPU acceleration — sin repaints innecesarios */
+.proj-card, .fil-card, .stat-box, .contact-link,
+.tool-card, .tl-item, nav#mobileNav, nav#deskNav,
+.chip, .soft-chip, .wms-panel, .hero-glow {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Scroll fluido como mantequilla */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Bounce solo dentro de demo, no en la página */
+body.is-mobile {
+  overscroll-behavior-y: none;
+}
+
+/* Fix el 100vh en iPhone con barra Safari */
+@supports (-webkit-touch-callout: none) {
+  #hero {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Spring feedback en touch — sensación física */
+@media (hover: none) and (pointer: coarse) {
+  .demo-btn:active,
+  .wbtn:active,
+  .lbtn:active,
+  .nav-cta:active,
+  button:active {
+    transform: scale(0.93) !important;
+    transition: transform 0.06s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    filter: brightness(0.88);
+  }
+  .proj-card:active {
+    transform: scale(0.988) !important;
+    transition: transform 0.1s ease !important;
+    box-shadow: 0 0 30px rgba(245,136,31,.12) !important;
+  }
+  .fil-card:active,
+  .stat-box:active,
+  .tool-card:active {
+    opacity: 0.82;
+    transition: opacity 0.07s ease !important;
+  }
+  .contact-link:active {
+    transform: scale(0.95) translateY(-2px) !important;
+    transition: transform 0.08s ease !important;
+  }
+  .chip:active, .soft-chip:active, .ttag:active {
+    transform: scale(0.91) !important;
+    transition: transform 0.06s ease !important;
+  }
+  .mob-nav-item:active svg {
+    transform: scale(0.82);
+    transition: transform 0.08s ease;
+  }
+  /* Reveal más rápido en mobile */
+  .reveal {
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+}
+
+/* Backdrop iOS premium */
+nav#mobileNav {
+  -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(0.92);
+  backdrop-filter: blur(30px) saturate(180%) brightness(0.92);
+}
+nav#deskNav {
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+/* No text-select en UI */
+nav, .mob-nav-item, .demo-bar, .wms-sidebar,
+.hero-badge, .section-tag, .hero-chips,
+.skill-group-title, .label-section-title {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+/* =============================================
+   MOBILE DEMO LAUNCHER
+============================================= */
+.demo-mobile-launcher {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 36px;
+  gap: 10px;
+  background: var(--card-bg);
+  border-radius: 0 0 20px 20px;
+  text-align: center;
+  min-height: 220px;
+}
+body.is-mobile .demo-mobile-launcher { display: flex; }
+
+body.is-mobile .demo-win .demo-body,
+body.is-mobile .demo-win .demo-bar { display: none !important; }
+
+/* Overlay fullscreen independiente */
+#demo-fs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9600;
+  background: #0A1628;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#demo-fs-topbar {
+  background: rgba(10,22,40,.98);
+  padding: calc(env(safe-area-inset-top,0px) + 10px) 14px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  flex-shrink: 0;
+}
+#demo-fs-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: calc(env(safe-area-inset-bottom,0px) + 20px);
+}
+/* WMS específico: forzar altura para scroll */
+#demo-fs-content .wms-wrap { min-height: calc(100dvh - 80px); }
+#demo-fs-content .demo-body { display: block !important; background: #0f1923; }
+#demo-fs-content .label-wrap { grid-template-columns: 1fr; }
+#demo-fs-content .catalog-demo-wrap { grid-template-columns: 1fr; }
+#demo-fs-content .sup-tab-inventarios,
+#demo-fs-content #sup-tab-inventarios { grid-template-columns: 1fr !important; }
+#demo-fs-content #sup-tab-pedidos { grid-template-columns: 1fr !important; }
+/* =============================================
+   ADAPTACIÓN MÓVIL (WMS, Catálogos, Supervisor)
+============================================= */
+@media (max-width: 768px) {
+  /* 1. WMS - Ocultar y convertir Sidebar en Menú Deslizable (Bottom Sheet) */
+  .wms-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important; /* Permite el scroll natural del teléfono */
+  }
+
+  .wms-sidebar {
+    position: fixed !important;
+    bottom: -120% !important; /* Escondido abajo por defecto */
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 65vh !important; /* Ocupará máximo el 65% de la pantalla al abrirse */
+    background: rgba(10,22,40,0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    border-top: 2px solid var(--orange) !important;
+    border-right: none !important;
+    z-index: 99999 !important;
+    transition: bottom 0.4s cubic-bezier(0.3, 1, 0.32, 1) !important;
+    padding: 25px 20px !important;
+    box-shadow: 0 -15px 50px rgba(0,0,0,0.9) !important;
+    border-radius: 24px 24px 0 0 !important;
+    overflow-y: auto !important;
+  }
+
+  /* Clase que activa el menú hacia arriba */
+  .wms-sidebar.mobile-active {
+    bottom: 0 !important;
+  }
+
+  /* Diseño del botón hamburguesa que crearemos en el Paso 2 */
+  .btn-mobile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--orange);
+    color: var(--navy);
+    font-weight: 700;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(245,136,31,0.3);
+    z-index: 9000;
+    cursor: pointer;
+  }
+
+  /* 2. Apilar Catálogos y Supervisor (Quitar el formato de dos columnas lado a lado) */
+  #catalogo-wrap, #supervisor-wrap, .demo-grid { 
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* 3. Tablas Responsivas (Para que no rompan el layout al no caber en la pantalla) */
+  .wms-table-wrap, table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important; /* Scroll suave en iOS */
+  }
+}
+/* --- AJUSTES DE MENÚ MÓVIL WMS (SEGURO) --- */
+.btn-mobile-menu { 
+  display: none; 
+}
+
+@media (max-width: 768px) {
+  .btn-mobile-menu {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--orange);
+    color: var(--navy);
+    font-weight: 800;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(245,136,31,0.3);
+    z-index: 9000;
+    cursor: pointer;
+  }
+
+  .wms-sidebar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 70vh !important;
+    background: rgba(10, 22, 40, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    border-top: 2px solid var(--orange) !important;
+    border-right: none !important;
+    z-index: 99999 !important;
+    transform: translateY(120%) !important;
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.32, 1) !important;
+    padding: 25px 20px !important;
+    box-shadow: 0 -15px 50px rgba(0,0,0,0.9) !important;
+    border-radius: 24px 24px 0 0 !important;
+    overflow-y: auto !important;
+  }
+
+  .wms-sidebar.mobile-active {
+    transform: translateY(0) !important;
+  }
+}
+/* =============================================
+   FULLSCREEN DEMO — FIX MODALES + WMS PANEL
+============================================= */
+body.fs-demo-active #modal-bitacora,
+body.fs-demo-active #modal-ajuste,
+body.fs-demo-active #modal-prestamo {
+  z-index: 10000 !important;
+}
+body.fs-demo-active #wms-overlay {
+  position: fixed !important;
+  z-index: 9700 !important;
+}
+body.fs-demo-active #wms-panel {
+  position: fixed !important;
+  top: 0 !important;
+  right: -400px !important;
+  height: 100dvh !important;
+  z-index: 9701 !important;
+}
+body.fs-demo-active #wms-panel.open {
+  right: 0 !important;
+}
+body.fs-demo-active #wms-toast {
+  position: fixed !important;
+  top: 80px !important;
+  right: 14px !important;
+  z-index: 99999 !important;
+}
+body.fs-demo-active .wms-sidebar {
+  display: flex !important;
+  flex-direction: column;
+}
+body.fs-demo-active .wms-wrap {
+  grid-template-columns: 140px 1fr !important;
+}
+
 </style>
 </head>
 <body>
@@ -546,14 +866,14 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
     <span class="first">Axel Lopez</span>
     <span class="last">Vazquez</span>
   </h1>
-  <p class="hero-title">Operaciones &amp; Almacen · <em>Automatización con IA</em> · Desarrollo de Sistemas</p>
+  <p class="hero-title">Operaciones &amp; Almacén· <em>Automatización con IA</em> · Desarrollo de Sistemas</p>
   <div class="hero-chips">
     <span class="chip">🤖 IA Day-to-Day</span>
     <span class="chip">📦 WMS / ERP</span>
     <span class="chip">🖨️ Automatización</span>
     <span class="chip">📊 SAP · Odoo</span>
     <span class="chip">💾 MongoDB + Node.js</span>
-    <span class="chip">🏭 Almacen Industrial</span>
+    <span class="chip">🏭 Logística Industrial</span>
     <span class="chip">📑 Catálogos Digitales</span>
     <span class="chip">👔 Men's International Collection</span>
   </div>
@@ -568,7 +888,7 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
     <span class="section-tag">// 01 · Sobre mí</span>
     <h2 class="section-title">Apasionado por <em>lo que hago</em></h2>
     <div class="section-divider"></div>
-    <p class="about-p">Soy <strong>Axel Lopez Vazquez</strong>, un profesional de operaciones y Almacen que descubrió el poder de la tecnología desde adentro de un almacén. Empecé cargando cajas, y hoy construyo los sistemas que los administran.</p>
+    <p class="about-p">Soy <strong>Axel Lopez Vazquez</strong>, un profesional de operaciones y almacén que descubrió el poder de la tecnología desde adentro de un almacén. Empecé cargando cajas, y hoy construyo los sistemas que los administran.</p>
     <p class="about-p">Lo que me diferencia es simple: <strong>cuando veo un problema, no espero a que alguien lo resuelva.</strong> Lo analizo, busco la herramienta correcta, me siento con Claude o Gemini y construyo la solución. Así nació un sistema ERP completo, un automatizador de etiquetas Monarch, un generador de catálogos profesionales y más.</p>
     <p class="about-p">No me llamo programador — soy alguien que <strong>sabe aprovechar las herramientas del presente</strong> para lograr lo que antes tomaba a un equipo. Tengo el pensamiento de un operador, la iniciativa de un emprendedor y la curiosidad de un ingeniero. <strong>Hoy trabajo en Men's International Collection</strong>, empresa de trajes para caballero en Guadalupe, N.L.</p>
   </div>
@@ -624,7 +944,7 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
     <div class="tl-item current reveal">
       <div class="tl-period">2025 — Presente</div>
       <div class="mic-badge">🏢 Trabajo Actual</div>
-      <div class="tl-role">Operaciones, Almacen &amp; Desarrollo de Sistemas</div>
+      <div class="tl-role">Operaciones, Almacén &amp; Desarrollo de Sistemas</div>
       <div class="tl-company"><strong>Men's International Collection, S.A. de C.V.</strong> — San Pedro Garza García, N.L.</div>
       <ul class="tl-bullets">
         <li>Construí y puse en producción un <strong>sistema ERP/WMS completo</strong> con Node.js, MongoDB, push notifications y múltiples módulos: inventario, pedidos, etiquetado, conciliación, kardex.</li>
@@ -727,34 +1047,42 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
     </div>
     <!-- WMS DEMO -->
     <div class="demo-win" id="wms-demo-container">
-      <!-- ✏️ BARRA DE PERSONALIZACIÓN WMS -->
-      <div style="background:rgba(245,136,31,.07);border-bottom:1px solid rgba(245,136,31,.2);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-        <span style="font-size:.72rem;font-weight:700;color:var(--orange);white-space:nowrap;">✏️ Personaliza el demo:</span>
-        <div style="display:flex;align-items:center;gap:7px;flex:1;min-width:180px;">
-          <span style="font-size:.7rem;color:var(--muted);white-space:nowrap;">🏢 Empresa:</span>
-          <input type="text" id="wms-empresa-input" placeholder="Tu Empresa" maxlength="28"
-            style="flex:1;padding:5px 10px;background:#0a111e;border:1px solid rgba(245,136,31,.35);color:var(--white);border-radius:7px;font-size:.78rem;font-family:'DM Sans',sans-serif;outline:none;min-width:0;"
-            oninput="wmsActualizarEmpresa()" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(245,136,31,.35)'">
-        </div>
-        <div style="display:flex;align-items:center;gap:7px;flex:1;min-width:160px;">
-          <span style="font-size:.7rem;color:var(--muted);white-space:nowrap;">👷 Operador:</span>
-          <input type="text" id="wms-operador-input" placeholder="Tu nombre" maxlength="24"
-            style="flex:1;padding:5px 10px;background:#0a111e;border:1px solid rgba(245,136,31,.35);color:var(--white);border-radius:7px;font-size:.78rem;font-family:'DM Sans',sans-serif;outline:none;min-width:0;"
-            oninput="wmsActualizarOperador()" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(245,136,31,.35)'">
-        </div>
-        <span style="font-size:.68rem;color:var(--muted);font-style:italic;white-space:nowrap;">→ Se refleja en el PDF</span>
+  
+  <div class="demo-bar">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="demo-bar-title" id="wms-bar-title">Sistema WMS · Tu Empresa · Panel Almacén</span>
+    <div class="demo-bar-actions">
+      <button class="demo-btn" onclick="wmsAddEntry()">📥 Ingreso</button>
+      <button class="demo-btn" onclick="wmsDownloadExcel()">📊 Excel</button>
+    </div>
+  </div>
+
+  <div class="demo-body">
+    <div style="background:rgba(245,136,31,.07);border-bottom:1px solid rgba(245,136,31,.2);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <span style="font-size:.72rem;font-weight:700;color:var(--orange);white-space:nowrap;">✏️ Personaliza el demo:</span>
+      <div style="display:flex;align-items:center;gap:7px;flex:1;min-width:180px;">
+        <span style="font-size:.7rem;color:var(--muted);white-space:nowrap;">🏢 Empresa:</span>
+        <input type="text" id="wms-empresa-input" placeholder="Tu Empresa" maxlength="28"
+          style="flex:1;padding:5px 10px;background:#0a111e;border:1px solid rgba(245,136,31,.35);color:var(--white);border-radius:7px;font-size:.78rem;font-family:'DM Sans',sans-serif;outline:none;min-width:0;"
+          oninput="wmsActualizarEmpresa()" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(245,136,31,.35)'">
       </div>
-      <div class="demo-bar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="demo-bar-title" id="wms-bar-title">Sistema WMS · Tu Empresa · Panel Almacén</span>
-        <div class="demo-bar-actions">
-          <button class="demo-btn" onclick="wmsAddEntry()">📥 Ingreso</button>
-          <button class="demo-btn" onclick="wmsDownloadExcel()">📊 Excel</button>
-        </div>
+      <div style="display:flex;align-items:center;gap:7px;flex:1;min-width:160px;">
+        <span style="font-size:.7rem;color:var(--muted);white-space:nowrap;">👷 Operador:</span>
+        <input type="text" id="wms-operador-input" placeholder="Tu nombre" maxlength="24"
+          style="flex:1;padding:5px 10px;background:#0a111e;border:1px solid rgba(245,136,31,.35);color:var(--white);border-radius:7px;font-size:.78rem;font-family:'DM Sans',sans-serif;outline:none;min-width:0;"
+          oninput="wmsActualizarOperador()" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(245,136,31,.35)'">
       </div>
-      <div class="demo-body">
-        <div class="wms-wrap" id="wms-wrap">
-          <div class="wms-sidebar">
+      <span style="font-size:.68rem;color:var(--muted);font-style:italic;white-space:nowrap;">→ Se refleja en el PDF</span>
+    </div>
+
+    <div class="wms-wrap" id="wms-wrap">
+      
+      <button class="btn-mobile-menu" onclick="document.querySelector('.wms-sidebar').classList.toggle('mobile-active')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        Opciones del WMS
+      </button>
+
+      <div class="wms-sidebar">
             <div class="wms-sidebar-logo"><span id="wms-sidebar-brand">TU EMPRESA WMS</span></div>
             <div class="wms-nav-item active" onclick="wmsTab('stock',this)">📦 Stock Consolidado</div>
             <div class="wms-nav-item" onclick="wmsTab('auditoria',this)">⚖️ Auditoría Surtido</div>
@@ -1049,7 +1377,7 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
       </div>
       <div class="demo-body" style="overflow:auto;">
         <div class="catalog-demo-wrap">
-          <div class="catalog-controls" style="overflow-y:auto;max-height:600px;">
+          <div class="catalog-controls">
 
             <!-- MARCA PERSONALIZABLE -->
             <div class="cat-input-group">
@@ -1380,7 +1708,7 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
   <div class="skills-grid">
     <div>
       <div class="skill-group">
-        <div class="skill-group-title">🏭 Operaciones &amp; Almacen</div>
+        <div class="skill-group-title">🏭 Operaciones &amp; Logística</div>
         <div class="skill-bar-row"><div class="skill-bar-label"><span>Control de Inventarios</span><em>Avanzado</em></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w=".92"></div></div></div>
         <div class="skill-bar-row"><div class="skill-bar-label"><span>WMS / ERP</span><em>Avanzado</em></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w=".92"></div></div></div>
         <div class="skill-bar-row"><div class="skill-bar-label"><span>Montacargas HS</span><em>Certificado</em></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w=".90"></div></div></div>
@@ -1433,39 +1761,36 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
     </div>
   </div>
 </section>
-
+<!-- ======================== CV DESCARGABLE ======================== -->
 <div class="sep"></div>
 
-<!-- ======================== CV DESCARGABLE ======================== -->
 <section id="cv-descarga" class="reveal">
-  <span class="section-tag">// 07 · CV Imprimible</span>
-  <h2 class="section-title">Descarga mi <em>CV actualizado</em></h2>
-  <div class="section-divider"></div>
-  <p style="color:var(--muted);margin-bottom:28px;max-width:560px;">Versión imprimible con toda mi trayectoria actualizada — lista para compartir con reclutadores o visitadores.</p>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;">
-    <button onclick="descargarCV()" style="display:inline-flex;align-items:center;gap:9px;background:var(--orange);color:var(--navy);padding:13px 28px;border-radius:999px;font-size:.9rem;font-weight:800;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--orange)'">📄 Descargar PDF</button>
-    <button onclick="toggleCVPreview()" style="display:inline-flex;align-items:center;gap:9px;background:rgba(245,136,31,.12);color:var(--orange);padding:13px 28px;border-radius:999px;font-size:.9rem;font-weight:700;border:1px solid rgba(245,136,31,.35);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;">👁️ Ver Vista Previa</button>
+  <div style="text-align:center; max-width:600px; margin:0 auto 40px;">
+    <span class="section-tag">// 06 · Currículum</span>
+    <h2 class="section-title">Descarga mi <em>CV</em></h2>
+    <div class="section-divider" style="margin: 0 auto 24px;"></div>
+    <p style="color:var(--muted); margin-bottom:24px; line-height:1.6;">
+      Puedes previsualizar mi currículum completo aquí mismo o descargar la versión en formato PDF lista para imprimir.
+    </p>
+    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+      <button class="nav-cta" style="border:none; cursor:pointer; font-family:'DM Sans', sans-serif; font-size:.9rem; padding:12px 24px;" onclick="toggleCVPreview()">👁️ Ver / Ocultar CV</button>
+      <button class="nav-cta" style="background:#27ae60; color:#fff; border:none; cursor:pointer; font-family:'DM Sans', sans-serif; font-size:.9rem; padding:12px 24px;" onclick="descargarCV()">📑 Descargar PDF</button>
+    </div>
   </div>
 
-  <!-- CV PREVIEW CONTAINER -->
-  <div id="cv-preview-wrap" style="display:none;overflow:auto;padding-bottom:20px;">
-    <div id="cv-paper" style="width:794px;background:#fff;color:#222;font-family:Arial,Helvetica,sans-serif;margin:0 auto;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.5);overflow:hidden;display:grid;grid-template-columns:200px 1fr;">
-
-      <!-- ===== SIDEBAR ===== -->
+<div id="cv-preview-wrap" style="display:none;overflow:auto;padding-bottom:20px;">    
+    <div id="cv-page-1" style="width:794px; height:1123px; background:#fff; color:#222; font-family:Arial,Helvetica,sans-serif; margin:0 auto 20px; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,.5); overflow:hidden; display:grid; grid-template-columns:200px 1fr; box-sizing:border-box;">
       <div style="background:#0D1F3C;padding:24px 16px;display:flex;flex-direction:column;gap:18px;">
-
-        <!-- Photo -->
         <div style="text-align:center;padding-bottom:16px;border-bottom:1px solid rgba(245,136,31,.3);">
           <img src="data:image/jpeg;base64,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" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #F5881F;display:block;margin:0 auto 10px;">
           <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:.5px;">Axel Lopez Vazquez</div>
-          <div style="font-size:8.5px;color:#F5881F;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Operaciones · Almacen</div>
+          <div style="font-size:8.5px;color:#F5881F;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Operaciones · Logística</div>
         </div>
 
-        <!-- Contacto -->
         <div>
           <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Contacto</div>
           <div style="display:flex;flex-direction:column;gap:5px;">
-            <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#F5881F;font-size:9px;min-width:12px;">📍</span><span style="font-size:8.5px;color:#c0cce0;line-height:1.5;">Calle Cuatrocienegas, Col. Coahuila<br>Juárez, Nuevo León</span></div>
+            <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#F5881F;font-size:9px;min-width:12px;">📍</span><span style="font-size:8.5px;color:#c0cce0;line-height:1.5;">Calle Av Coahuila , Col. Coahuila<br>Juárez, Nuevo León</span></div>
             <div style="display:flex;gap:6px;align-items:center;"><span style="color:#F5881F;font-size:9px;">📱</span><span style="font-size:8.5px;color:#c0cce0;">813-161-5365</span></div>
             <div style="display:flex;gap:6px;align-items:center;"><span style="color:#F5881F;font-size:9px;">✉️</span><span style="font-size:8.5px;color:#c0cce0;">axelyan2@gmail.com</span></div>
             <div style="display:flex;gap:6px;align-items:center;"><span style="color:#F5881F;font-size:9px;">🎂</span><span style="font-size:8.5px;color:#c0cce0;">16/12/2000</span></div>
@@ -1473,7 +1798,6 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </div>
         </div>
 
-        <!-- Competencias -->
         <div>
           <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Competencias</div>
           <div style="display:flex;flex-direction:column;gap:3px;">
@@ -1481,64 +1805,33 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </div>
         </div>
 
-        <!-- Herramientas -->
         <div>
           <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Herramientas</div>
           <div style="display:flex;flex-direction:column;gap:2px;">
             <div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ SAP (almacén e inventario)</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Odoo ERP</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Excel / Google Sheets</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Mercado Libre Seller</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Hand Scanner (RF)</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Montacargas HS + Patín eléctrico</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Adobe Acrobat</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Node.js / MongoDB</div><div style="font-size:8px;color:#c0cce0;line-height:1.6;">▸ Claude AI / Gemini AI</div>
           </div>
         </div>
-
-        <!-- Idiomas -->
-        <div>
-          <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Idiomas</div>
-          <div style="font-size:8.5px;color:#c0cce0;line-height:1.85;">
-            <div><strong style="color:#fff;">Español:</strong> Lengua materna</div>
-            <div style="margin-top:4px;"><strong style="color:#fff;">Inglés: A1</strong> · Principiante</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:3px;height:4px;margin-top:4px;overflow:hidden;"><div style="background:#F5881F;height:100%;width:15%;"></div></div>
-          </div>
-        </div>
-
-        <!-- Educación -->
-        <div>
-          <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Educación</div>
-          <div style="font-size:8.5px;color:#c0cce0;line-height:1.7;">
-            <div style="color:#fff;font-weight:700;">Bachillerato General</div>
-            <div>Virtual Innova Preparatoria</div>
-            <div>Aguascalientes · 2020</div>
-          </div>
-        </div>
-
-        <!-- Footer sidebar -->
-        <div style="margin-top:auto;padding-top:12px;border-top:1px solid rgba(245,136,31,.2);font-size:7px;color:#4a6080;text-align:center;">Estado civil: Soltero<br>Nac. 16/12/2000</div>
-
       </div>
 
-      <!-- ===== MAIN CONTENT ===== -->
-      <div style="padding:28px 24px;background:#fff;">
-
-        <!-- Name header -->
+      <div style="padding:28px 24px;background:#fff; display:flex; flex-direction:column; height:100%; box-sizing:border-box;">
         <div style="border-bottom:3px solid #F5881F;padding-bottom:12px;margin-bottom:16px;">
           <h1 style="font-size:26px;font-weight:900;color:#0D1F3C;margin:0 0 3px;letter-spacing:-0.5px;">Axel Lopez Vazquez</h1>
-          <p style="font-size:9px;color:#777;margin:0;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;">Operaciones · Almacen · Auditoría de Inventarios · Automatización con IA</p>
+          <p style="font-size:9px;color:#777;margin:0;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;">Operaciones · Almacén · Auditoría de Inventarios · Automatización con IA</p>
         </div>
 
-        <!-- Síntesis -->
         <div style="margin-bottom:16px;background:#f8f9fc;border-left:3px solid #F5881F;padding:12px 14px;border-radius:0 6px 6px 0;">
           <div style="font-size:8px;font-weight:900;color:#0D1F3C;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;">Síntesis</div>
           <p style="font-size:8.5px;color:#444;line-height:1.8;margin:0;">Persona comunicativa, proactiva y adaptable, con gran capacidad para aprender rápidamente y asumir responsabilidades. Me he destacado por ser un elemento de confianza en cada equipo, logrando ascensos dentro de las mismas empresas gracias a mi compromiso, iniciativa y orientación a resultados.</p>
           <p style="font-size:8.5px;color:#444;line-height:1.8;margin:6px 0 0;">Cuento con experiencia sólida en áreas operativas y administrativas: control de inventarios, logística, almacén, auditoría de calidad, atención al cliente y comercio electrónico. He trabajado con SAP, Odoo, Excel y plataformas digitales. <strong>Actualmente construyo sistemas ERP/WMS con Node.js, MongoDB e IA.</strong> Tengo facilidad para trabajar en equipo, resolver problemas bajo presión y organizar tareas eficientemente.</p>
         </div>
 
-        <!-- Experiencia -->
         <div style="font-size:9px;font-weight:900;color:#0D1F3C;text-transform:uppercase;letter-spacing:1.5px;border-left:3px solid #F5881F;padding-left:8px;margin-bottom:12px;">Experiencia Profesional</div>
 
-        <!-- === JOB 1: MIC === -->
         <div style="margin-bottom:13px;padding:10px 12px;background:#f0f4ff;border-radius:6px;border-left:3px solid #0D1F3C;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
             <div style="flex:1;">
-              <div style="font-size:10px;font-weight:800;color:#0D1F3C;">Operaciones, Almacen &amp; Desarrollo de Sistemas</div>
-              <div style="font-size:8.5px;color:#F5881F;font-weight:700;margin-top:1px;">Men's International Collection, S.A. de C.V. — Guadalupe, N.L.</div>
+              <div style="font-size:10px;font-weight:800;color:#0D1F3C;">Operaciones, Almacén &amp; Desarrollo de Sistemas</div>
+              <div style="font-size:8.5px;color:#F5881F;font-weight:700;margin-top:1px;">Men's International Collection, S.A. de C.V. — San Pedro Garza García, N.L.</div>
             </div>
             <div style="font-size:7.5px;color:#888;font-weight:700;white-space:nowrap;margin-left:8px;background:#e0e8ff;padding:2px 7px;border-radius:99px;">2025 — Presente</div>
           </div>
@@ -1551,7 +1844,6 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </ul>
         </div>
 
-        <!-- === JOB 2: DSW === -->
         <div style="margin-bottom:13px;padding:10px 12px;background:#fffaf0;border-radius:6px;border-left:3px solid #c08020;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
             <div style="flex:1;">
@@ -1568,7 +1860,6 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </ul>
         </div>
 
-        <!-- === JOB 3: Ajemex === -->
         <div style="margin-bottom:13px;padding:10px 12px;background:#f8f8f8;border-radius:6px;border-left:3px solid #aaa;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
             <div style="flex:1;">
@@ -1586,8 +1877,32 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
             <li>Asignado frecuentemente a tareas complejas o bajo presión por agilidad, responsabilidad y capacidad de resolución.</li>
           </ul>
         </div>
+      </div>
+    </div><div id="cv-page-2" style="width:794px; height:1123px; background:#fff; color:#222; font-family:Arial,Helvetica,sans-serif; margin:0 auto 20px; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,.5); overflow:hidden; display:grid; grid-template-columns:200px 1fr; box-sizing:border-box;">
+      <div style="background:#0D1F3C;padding:24px 16px;display:flex;flex-direction:column;gap:18px;">
+        <div>
+          <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Idiomas</div>
+          <div style="font-size:8.5px;color:#c0cce0;line-height:1.85;">
+            <div><strong style="color:#fff;">Español:</strong> Lengua materna</div>
+            <div style="margin-top:4px;"><strong style="color:#fff;">Inglés: A1</strong> · Principiante</div>
+            <div style="background:rgba(255,255,255,.06);border-radius:3px;height:4px;margin-top:4px;overflow:hidden;"><div style="background:#F5881F;height:100%;width:15%;"></div></div>
+          </div>
+        </div>
 
-        <!-- === JOB 4: Motomex Atención Cliente === -->
+        <div>
+          <div style="font-size:8px;font-weight:900;color:#F5881F;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(245,136,31,.25);">Educación</div>
+          <div style="font-size:8.5px;color:#c0cce0;line-height:1.7;">
+            <div style="color:#fff;font-weight:700;">Bachillerato General</div>
+            <div>Virtual Innova Preparatoria</div>
+            <div>Aguascalientes · 2020</div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto;padding-top:12px;border-top:1px solid rgba(245,136,31,.2);font-size:7px;color:#4a6080;text-align:center;">Estado civil: Soltero<br>Nac. 16/12/2000</div>
+      </div>
+
+      <div style="padding:28px 24px;background:#fff; display:flex; flex-direction:column; height:100%; box-sizing:border-box;">
+        
         <div style="margin-bottom:13px;padding:10px 12px;background:#f8f8f8;border-radius:6px;border-left:3px solid #aaa;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
             <div style="flex:1;">
@@ -1604,7 +1919,6 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </ul>
         </div>
 
-        <!-- === JOB 5: Motomex Analista Inventarios === -->
         <div style="margin-bottom:13px;padding:10px 12px;background:#f8f8f8;border-radius:6px;border-left:3px solid #aaa;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
             <div style="flex:1;">
@@ -1622,7 +1936,6 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </ul>
         </div>
 
-        <!-- === JOB 6: Mission Foods === -->
         <div style="margin-bottom:10px;padding:10px 12px;background:#f8f8f8;border-radius:6px;border-left:3px solid #ccc;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
             <div style="flex:1;">
@@ -1640,11 +1953,12 @@ body.is-mobile .soft-chip:active{background:rgba(245,136,31,.1);border-color:rgb
           </ul>
         </div>
 
-        <!-- Footer -->
-        <div style="margin-top:14px;padding-top:8px;border-top:1.5px solid #F5881F;display:flex;justify-content:space-between;align-items:center;">
+        <div style="margin-top:auto;padding-top:8px;border-top:1.5px solid #F5881F;display:flex;justify-content:space-between;align-items:center;">
           <div style="font-size:7px;color:#aaa;">axelyan2@gmail.com &nbsp;|&nbsp; 813-161-5365 &nbsp;|&nbsp; Guadalupe, Nuevo León</div>
-          <div style="font-size:7px;color:#F5881F;font-weight:700;">Actualizado Mayo 2025</div>
+          <div style="font-size:7px;color:#F5881F;font-weight:700;">Actualizado Mayo 2026</div>
         </div>
+      </div>
+    </div></div>```
 
       </div><!-- end main -->
 
@@ -2005,17 +2319,24 @@ function wmsDownloadExcel(){
 
 // ---- WMS TAB SWITCHER ----
 function wmsTab(tab, el){
-  // Hide all tabs
-  ['stock','auditoria','prestamos','bitacora','kardextotal','pedidos','conciliacion'].forEach(t=>{
-    const el=document.getElementById('wms-tab-'+t);
-    if(el) el.style.display='none';
-  });
-  // Show selected
-  const target=document.getElementById('wms-tab-'+tab);
-  if(target) target.style.display='block';
-  // Update nav active
-  document.querySelectorAll('.wms-nav-item').forEach(i=>i.classList.remove('active'));
+  // Quitar active de todos los nav items
+  document.querySelectorAll('.wms-nav-item').forEach(b => b.classList.remove('active'));
   if(el) el.classList.add('active');
+
+  // Ocultar todos los tabs
+  ['stock','auditoria','prestamos','bitacora','kardextotal','pedidos','conciliacion'].forEach(t => {
+    const div = document.getElementById(`wms-tab-${t}`);
+    if(div) div.style.display = 'none';
+  });
+
+  // Mostrar el tab correcto
+  const target = document.getElementById(`wms-tab-${tab}`);
+  if(target) target.style.display = 'block';
+
+  // Cerrar menú móvil automáticamente
+  const sidebar = document.querySelector('.wms-sidebar');
+  if(sidebar) sidebar.classList.remove('mobile-active');
+
   // Init tab data if needed
   if(tab==='auditoria') renderWMSConciliacion();
   if(tab==='prestamos') renderWMSPrestamos();
@@ -2482,26 +2803,9 @@ function catAplicarPaleta(nombre, btn){
 }
 
 let catShirtDefault = './suit_photo.png';
-(function(){
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.onload = function(){
-    const c = document.createElement('canvas');
-    c.width = img.naturalWidth; c.height = img.naturalHeight;
-    c.getContext('2d').drawImage(img, 0, 0);
-    try {
-      catShirtDefault = c.toDataURL('image/png');
-      catColores.forEach(col => {
-        if(col.img === './suit_photo.png') col.img = catShirtDefault;
-      });
-      renderCatColoresEditor();
-      catalogUpdate();
-    } catch(e) { /* si falla por CORS, queda la ruta relativa */ }
-  };
-  img.src = './suit_photo.png';
-})();
 let catColores = [
-  { nombre:'NEGRO', tallas:'38C:1, 42R:1', img: catShirtDefault },
+  { nombre:'BEIGE', tallas:'38C:4, 42R:1', img: catShirtDefault },
+  
 ];
 
 function renderCatColoresEditor(){
@@ -2629,25 +2933,69 @@ function renderCatGrid(){
 }
 catalogUpdate();
 
+async function imgToDataURL(src){
+  return new Promise(resolve=>{
+    // Already base64 — return as-is
+    if(src.startsWith('data:')){ resolve(src); return; }
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function(){
+      const c = document.createElement('canvas');
+      c.width = img.naturalWidth; c.height = img.naturalHeight;
+      c.getContext('2d').drawImage(img, 0, 0);
+      try { resolve(c.toDataURL('image/png')); }
+      catch(e){ resolve(src); } // CORS blocked — return original, best effort
+    };
+    img.onerror = ()=>resolve(src);
+    // Cache-bust so browser re-fetches with crossOrigin
+    img.src = src + (src.includes('?')?'&':'?') + '_t=' + Date.now();
+  });
+}
+
 async function catalogExportPDF(){
   const btns = document.querySelectorAll('[onclick="catalogExportPDF()"]');
   btns.forEach(b=>{ b.textContent='⏳ Generando PDF...'; b.disabled=true; });
   try{
     const element = document.getElementById('cat-doc');
-    const canvas  = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
-    const imgData = canvas.toDataURL('image/png');
+
+    // ── Convert all <img> inside the catalog to base64 so html2canvas doesn't choke ──
+    const imgs = Array.from(element.querySelectorAll('img'));
+    const origSrcs = imgs.map(i=>i.src);
+    await Promise.all(imgs.map(async (img)=>{
+      img.src = await imgToDataURL(img.src);
+    }));
+
+    const canvas = await html2canvas(element,{
+      scale:2,
+      useCORS:true,
+      allowTaint:true,
+      backgroundColor:'#ffffff',
+      logging:false
+    });
+
+    // Restore original srcs
+    imgs.forEach((img,i)=>{ img.src = origSrcs[i]; });
+
     const {jsPDF} = window.jspdf;
-    const w = element.offsetWidth;
-    const h = element.offsetHeight;
-    const pdf = new jsPDF({ orientation:'l', unit:'px', format:[w,h] });
-    pdf.addImage(imgData,'PNG',0,0,w,h);
-    const marca = (document.getElementById('cat-marca')?.value||'TuMarca').replace(/[^a-zA-Z0-9]/g,'_');
-    const mod   = document.getElementById('cat-mod').value.replace(/[^a-zA-Z0-9]/g,'_');
-    pdf.save(`CATALOGO_${marca}_${mod}.pdf`);
+    
+    // Tomar medidas exactas del diseño para que la hoja PDF nazca de ese tamaño
+    const pixelWidth = element.offsetWidth;
+    const pixelHeight = element.offsetHeight;
+    
+    const pdf = new jsPDF({ 
+      orientation: pixelWidth > pixelHeight ? 'l' : 'p', 
+      unit: 'px', 
+      format: [pixelWidth, pixelHeight] 
+    });
+    
+    // Pegar la imagen en las coordenadas 0,0 y estirarla al 100% de los píxeles (cero bordes)
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pixelWidth, pixelHeight);
+    
+    pdf.save(`CFicha_${document.getElementById('cat-mod')?.value||'Demo'}.pdf`);
     btns.forEach(b=>{ b.textContent='✅ PDF Descargado'; });
     setTimeout(()=>btns.forEach(b=>{ b.textContent='📑 Descargar PDF Real'; b.disabled=false; }),2200);
   } catch(e){
-    console.error(e);
+    console.error('catalogExportPDF error:', e);
     btns.forEach(b=>{ b.textContent='⚠️ Error'; setTimeout(()=>{ b.textContent='📑 Descargar PDF Real'; b.disabled=false; },2000); });
   }
 }
@@ -2700,7 +3048,7 @@ const odooTermLines=[
   {ts:'[08:30:05]',cls:'ot-ok',txt:'✓ SKU M40901-2A | MARINO | Variantes: 7 tallas'},
   {ts:'[08:30:06]',cls:'ot-info',txt:'ℹ️ Verificando integridad de stocks...'},
   {ts:'[08:30:07]',cls:'ot-ok',txt:'✓ 4,287 SKUs migrados · Tasa de éxito: 100%'},
-  {ts:'[08:30:07]',cls:'ot-ok',txt:'🎉 MIGRACIÓN COMPLETADA '},
+  {ts:'[08:30:07]',cls:'ot-ok',txt:'🎉 MIGRACIÓN COMPLETADA — Ahorro: ~$40,000 MXN'},
 ];
 const odooIO=new IntersectionObserver(entries=>{
   if(entries[0].isIntersecting){
@@ -3148,6 +3496,157 @@ if(window._isIOS){
 if(window._isIOS){
   document.body.style.overscrollBehavior='none';
 }
+
+// =============================================
+// MOBILE DEMO FULLSCREEN SYSTEM v2
+// =============================================
+let _fsOverlay = null;
+let _fsOrigParent = null;
+let _fsOrigSibling = null;
+let _fsOrigBodyEl = null;
+
+const demoIconMap = [
+  { k:'WMS',        icon:'📦' },
+  { k:'Etiqueta',   icon:'🖨️' },
+  { k:'Catálog',    icon:'📑' },
+  { k:'MARIEL',     icon:'🪞' },
+  { k:'Vidrios',    icon:'🪟' },
+  { k:'Odoo',       icon:'🔄' },
+  { k:'Migration',  icon:'🔄' },
+  { k:'Supervisor', icon:'👨‍💼' },
+  { k:'Panel',      icon:'📊' },
+];
+
+function initMobileDemos() {
+  if (!window._isMobile) return;
+  document.querySelectorAll('.demo-win').forEach(win => {
+    const barTitleEl = win.querySelector('.demo-bar-title');
+    if (!barTitleEl) return;
+    const title = barTitleEl.textContent.trim();
+    let icon = '💻';
+    for (const { k, icon: ic } of demoIconMap) {
+      if (title.includes(k)) { icon = ic; break; }
+    }
+    // Ocultar hijos existentes
+    [...win.children].forEach(child => {
+      child._origDisplayFs = window.getComputedStyle(child).display;
+      child.style.display = 'none';
+    });
+    // Crear launcher card
+    const launcher = document.createElement('div');
+    launcher.className = 'demo-mobile-launcher';
+    const shortTitle = title.length > 50 ? title.substring(0, 50) + '…' : title;
+    launcher.innerHTML = `
+      <div style="font-size:3rem;line-height:1;margin-bottom:4px;">${icon}</div>
+      <div style="font-size:.88rem;font-weight:800;color:var(--white);line-height:1.4;max-width:280px;">${shortTitle}</div>
+      <p style="color:var(--muted);font-size:.76rem;line-height:1.65;margin:6px 0 16px;max-width:270px;">Demo interactivo real. Toca para abrirlo como una app independiente.</p>
+      <button onclick="openDemoFs(this.closest('.demo-win'))"
+        style="background:var(--orange);color:var(--navy);border:none;padding:14px 36px;border-radius:99px;font-weight:800;font-size:.9rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em;box-shadow:0 8px 24px rgba(245,136,31,.45);">
+        🚀 Abrir Demo Completo
+      </button>`;
+    win.appendChild(launcher);
+  });
+}
+
+function openDemoFs(win) {
+  if (_fsOverlay) return;
+  const demoBody = win.querySelector('.demo-body');
+  if (!demoBody) return;
+
+  // Guardar posición original en el DOM
+  _fsOrigParent  = demoBody.parentNode;
+  _fsOrigSibling = demoBody.nextSibling;
+  _fsOrigBodyEl  = demoBody;
+
+  const title = win.querySelector('.demo-bar-title')?.textContent.trim() || 'Demo';
+  const shortTitle = title.length > 45 ? title.substring(0,45)+'…' : title;
+
+  // Crear overlay
+  _fsOverlay = document.createElement('div');
+  _fsOverlay.id = 'demo-fs-overlay';
+
+  // Top bar
+  const topBar = document.createElement('div');
+  topBar.id = 'demo-fs-topbar';
+  topBar.innerHTML = `
+    <button onclick="closeDemoFs()"
+      style="background:rgba(231,76,60,.2);border:1.5px solid rgba(231,76,60,.5);color:#e74c3c;padding:9px 18px;border-radius:99px;font-weight:800;font-size:.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;flex-shrink:0;white-space:nowrap;">
+      ✕ Cerrar
+    </button>
+    <span style="font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.45);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;">${shortTitle}</span>`;
+
+  // Área de contenido scrolleable
+  const contentArea = document.createElement('div');
+  contentArea.id = 'demo-fs-content';
+
+  // Mover (no clonar) el demoBody real al overlay — preserva todos los event handlers
+  demoBody.style.cssText = 'display:block!important;';
+  contentArea.appendChild(demoBody);
+
+  _fsOverlay.appendChild(topBar);
+  _fsOverlay.appendChild(contentArea);
+  document.body.appendChild(_fsOverlay);
+
+  // Bloquear scroll del body
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('fs-demo-active');
+  contentArea.scrollTop = 0;
+
+  // Android: botón atrás
+  history.pushState({ demoFs: true }, '');
+  window.addEventListener('popstate', _handleFsBack, { once: true });
+
+  // Re-inicializar demos que lo necesiten
+  const t = title;
+  if (t.includes('Supervisor') || t.includes('Panel')) {
+    setTimeout(() => { supRenderTallas(); renderSupMonitor(); renderSupCatalogo(''); }, 120);
+  }
+  if (t.includes('Catálog'))  { setTimeout(catalogUpdate, 120); }
+  if (t.includes('Etiqueta')) { setTimeout(renderLabelCatGrid, 120); }
+  if (t.includes('WMS'))      { setTimeout(renderWMSTable, 120); }
+  if (t.includes('Odoo') || t.includes('Migration')) {
+    setTimeout(() => {
+      document.querySelectorAll('.prog-fill.odoo-prog').forEach((b,i) => {
+        setTimeout(() => { b.style.transform = 'scaleX(1)'; }, i*200);
+      });
+    }, 200);
+  }
+}
+
+function closeDemoFs() {
+  if (!_fsOverlay || !_fsOrigBodyEl) return;
+
+  // Devolver el demoBody a su lugar original en el DOM
+  if (_fsOrigSibling) {
+    _fsOrigParent.insertBefore(_fsOrigBodyEl, _fsOrigSibling);
+  } else {
+    _fsOrigParent.appendChild(_fsOrigBodyEl);
+  }
+  // Volver a ocultar (mobile sin fullscreen)
+  _fsOrigBodyEl.style.cssText = 'display:none!important;';
+
+  // Eliminar overlay
+  document.body.removeChild(_fsOverlay);
+  _fsOverlay     = null;
+  _fsOrigBodyEl  = null;
+  _fsOrigParent  = null;
+  _fsOrigSibling = null;
+
+  document.body.style.overflow = '';
+  document.body.classList.remove('fs-demo-active');
+  window.removeEventListener('popstate', _handleFsBack);
+}
+
+function _handleFsBack() { closeDemoFs(); }
+
+// Escape en desktop
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && _fsOverlay) closeDemoFs();
+});
+
+// Inicializar
+initMobileDemos();
+
 </script>
 <!-- ============================================================
      MODAL: BITÁCORA DE TALLA
@@ -3563,36 +4062,51 @@ async function descargarCV(){
   const btn = document.querySelector('[onclick="descargarCV()"]');
   const origText = btn ? btn.innerHTML : '';
   if(btn){ btn.innerHTML = '⏳ Generando PDF...'; btn.disabled = true; }
-  
-  // Show the preview to capture it
+
   const wrap = document.getElementById('cv-preview-wrap');
   const wasHidden = wrap && wrap.style.display === 'none';
   if(wrap) wrap.style.display = 'block';
-  
+
   try {
-    const element = document.getElementById('cv-paper');
-    if(!element) throw new Error('No cv-paper');
-    const canvas = await html2canvas(element, { 
-      scale: 2, 
-      useCORS: true, 
-      backgroundColor: '#ffffff',
-      logging: false 
-    });
-    const imgData = canvas.toDataURL('image/png');
+    const p1 = document.getElementById('cv-page-1');
+    const p2 = document.getElementById('cv-page-2');
+
+    // Convertir imágenes a base64 para evitar bloqueos
+    const imgs = Array.from(wrap.querySelectorAll('img'));
+    const origSrcs = imgs.map(i=>i.src);
+    await Promise.all(imgs.map(async (img)=>{
+      img.src = await imgToDataURL(img.src);
+    }));
+
+    // Capturar las dos hojas completas
+    if(btn) btn.innerHTML = '⏳ Renderizando pág. 1…';
+    const c1 = await html2canvas(p1, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    
+    if(btn) btn.innerHTML = '⏳ Renderizando pág. 2…';
+    const c2 = await html2canvas(p2, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+
+    // Restaurar imágenes originales
+    imgs.forEach((img,i)=>{ img.src = origSrcs[i]; });
+
+    // Generar PDF usando el estándar universal A4 (210x297mm)
     const {jsPDF} = window.jspdf;
-    const pdf = new jsPDF({ orientation:'p', unit:'mm', format:'a4' });
-    const pdfW = pdf.internal.pageSize.getWidth();
-    const pdfH = (canvas.height * pdfW) / canvas.width;
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
-    pdf.save('CV_Axel_Lopez_Vazquez_2025.pdf');
-    if(btn){ btn.innerHTML = '✅ PDF Descargado'; }
-    setTimeout(()=>{ if(btn){ btn.innerHTML = origText; btn.disabled = false; } }, 2500);
-  } catch(e) {
-    console.error(e);
-    if(btn){ btn.innerHTML = '⚠️ Error — intenta de nuevo'; setTimeout(()=>{ btn.innerHTML = origText; btn.disabled = false; }, 2000); }
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    
+    // Pegar imágenes exactas en el canvas A4
+    pdf.addImage(c1.toDataURL('image/png'), 'PNG', 0, 0, 210, 297);
+    pdf.addPage();
+    pdf.addImage(c2.toDataURL('image/png'), 'PNG', 0, 0, 210, 297);
+
+    pdf.save('CV_Axel_Lopez_Vazquez_2026.pdf');
+    
+    if(btn){ btn.innerHTML = '✅ Descargado'; }
+    setTimeout(()=>{ if(btn){ btn.innerHTML = origText; btn.disabled = false; }}, 2500);
+
+  } catch(e){
+    console.error('descargarCV error:', e);
+    if(btn){ btn.innerHTML = '⚠️ Error'; setTimeout(()=>{ btn.innerHTML = origText; btn.disabled = false; }, 2000); }
   }
-  
-  // Restore visibility
+
   if(wrap && wasHidden) wrap.style.display = 'none';
 }
 
